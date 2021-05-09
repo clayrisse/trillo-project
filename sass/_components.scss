@@ -14,6 +14,12 @@
   align-items: center;
   justify-content: center;
 
+  @media only screen and (max-width: $bp-small) {
+    order: 1;
+    flex: 0 0 100%;
+    background-color: var(--color-grey-light-2);
+  }
+
   &__input{
     font-family: inherit;
     font-size: inherit;
@@ -126,11 +132,25 @@
   list-style: none;
   margin-top: 3.5rem;
 
+  @media only screen and (max-width: $bp-medium) {
+    display: flex;
+    margin: 0;
+
+  }
+
   &__item {
     position: relative; //so the before setup works
 
     &:not(:last-child) {
       margin-bottom: .5rem;
+
+      @media only screen and (max-width: $bp-medium) {
+        margin: 0;
+      }
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      flex: 1;
     }
   }
 
@@ -171,6 +191,16 @@
 
     display: flex;
     align-items: center; //to align them perfectly in a line
+  
+    @media only screen and (max-width: $bp-medium) {
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      flex-direction: column;
+      padding: 1.5rem .5rem;
+    }
   }
 
   &__icon {
@@ -178,6 +208,13 @@
     height: 1.75rem;
     margin-right: 2rem;
     fill: currentColor; //is a way to use the same color as the parent and we loooove it
+  
+    @media only screen and (max-width: $bp-small) {
+      margin-right: 0;
+      margin-bottom: 0;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 
 }
@@ -194,6 +231,10 @@
   &__link:visited {
     color: #fff;
     text-decoration: none;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    display: none;
   }
 }
 
@@ -223,6 +264,11 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     padding: 1.5rem 3rem;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.8rem;
+      padding: 1.25% 2rem;
+    }
   }
 
   &__stars {
@@ -259,17 +305,28 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    @media only screen and (max-width: $bp-small) {
+      padding: 0 1.5rem;
+    }
   }
 
   &__rating-average {
     font-size: 2.25rem;
     font-weight: 300;
     margin-bottom: 3px;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.8rem;
+    }
   }
   
   &__rating-count {
     font-size: .8rem;
     text-transform: uppercase;
+    @media only screen and (max-width: $bp-small) {
+      font-size: .5rem;
+    }
   }
 }
 
@@ -358,15 +415,19 @@
     margin-right: .7rem;
 
     //for older browser
-    // background-image: url(../img/chevron-thin-right.svg);
-    // background-size: cover;
+    background-image: url(../img/chevron-thin-right.svg);
+    background-size: cover;
 
     //newer browser and using a "mask"
-    background-color: var(--color-primary);
-    -webkit-mask-image: url(../img/chevron-thin-right.svg);
-    -webkit-mask-size: cover;
-    mask-image: url(../img/chevron-thin-right.svg);
-    mask-size: cover;
+    @supports (-webkit-mask-image: url()) or (mask-image:url ()) {
+      background-color: var(--color-primary);
+      -webkit-mask-image: url(../img/chevron-thin-right.svg);
+      -webkit-mask-size: cover;
+      mask-image: url(../img/chevron-thin-right.svg);
+      mask-size: cover;
+      
+      background-image: none; //beacouse is active
+    }
   }
 }
 
@@ -386,7 +447,7 @@
   }
 
   &__friends {
-
+    display: flex;
   }
 
   &__photo {
@@ -397,7 +458,7 @@
     border: 3px solid #fff;
 
     &:not(:last-child) {
-      margin-right: -1.5rem;
+      margin-right: -2rem;
 
     }
   }
@@ -415,7 +476,10 @@
   position: relative;
   overflow: hidden;
 
- 
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
 
   &__text {
     margin-bottom: 2rem;
@@ -478,6 +542,10 @@
 .cta {
   padding: 3.5rem 0;
   text-align: center;
+
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2.5rem 0;
+  }
 
   &__book-now {
     font-size: 1.8rem;
